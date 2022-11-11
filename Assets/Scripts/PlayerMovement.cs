@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private int speed = 1;
-    private bool IsPlayer1 = false;
+    public bool IsPlayer1 = false;
     
     // Start is called before the first frame update
     void Start()
@@ -49,11 +49,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKey("w"))
         {
-            transform.Translate(0, speed, 0);
+            transform.Translate(0, 0, speed);
         }
         if (Input.GetKey("s"))
         {
-            transform.Translate(0, -speed, 0);
+            transform.Translate(0, 0, -speed);
         }
         if (Input.GetKey("a"))
         {
@@ -72,11 +72,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKey("up"))
         {
-            transform.Translate(0, speed, 0);
+            transform.Translate(0, 0, speed);
         }
         if (Input.GetKey("down"))
         {
-            transform.Translate(0, -speed, 0);
+            transform.Translate(0, 0, -speed);
         }
         if (Input.GetKey("left"))
         {

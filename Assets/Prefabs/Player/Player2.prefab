@@ -7,9 +7,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8029278475784967175, guid: 8103a052695ba474fbc8aaa8dc4149b1, type: 3}
+      propertyPath: IsPlayer1
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 282063407151255747, guid: 8103a052695ba474fbc8aaa8dc4149b1, type: 3}
       propertyPath: m_Name
-      value: PlayerManager
+      value: Player2
       objectReference: {fileID: 0}
     - target: {fileID: 7359802935613438290, guid: 8103a052695ba474fbc8aaa8dc4149b1, type: 3}
       propertyPath: m_RootOrder
