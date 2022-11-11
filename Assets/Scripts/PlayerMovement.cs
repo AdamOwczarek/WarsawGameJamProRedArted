@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private int speed = 1;
     private bool IsPlayer1 = false;
     
     // Start is called before the first frame update
@@ -35,24 +36,32 @@ public class PlayerMovement : MonoBehaviour
     {
         IsPlayer1 = value;
     }
+    public bool GetSpeed()
+    {
+        return IsPlayer1;
+    }
+    public void SetSpeed(int value)
+    {
+        speed = value;
+    }
 
     void GetKeyboardInputWsad()
     {
         if (Input.GetKey("w"))
         {
-            transform.Translate(0,1,0);
+            transform.Translate(0, speed, 0);
         }
         if (Input.GetKey("s"))
         {
-            transform.Translate(0,-1,0);
+            transform.Translate(0, -speed, 0);
         }
         if (Input.GetKey("a"))
         {
-            transform.Translate(-1,0,0);
+            transform.Translate(-speed, 0, 0);
         }
         if (Input.GetKey("d"))
         {
-            transform.Translate(1,0,0);
+            transform.Translate(speed, 0, 0);
         }
         if (Input.GetKeyDown("space"))
         {
@@ -63,19 +72,19 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKey("up"))
         {
-            transform.Translate(0,1,0);
+            transform.Translate(0, speed, 0);
         }
         if (Input.GetKey("down"))
         {
-            transform.Translate(0,-1,0);
+            transform.Translate(0, -speed, 0);
         }
         if (Input.GetKey("left"))
         {
-            transform.Translate(-1,0,0);
+            transform.Translate(-speed, 0, 0);
         }
         if (Input.GetKey("right"))
         {
-            transform.Translate(1,0,0);
+            transform.Translate(speed, 0, 0);
         }
         if (Input.GetKeyDown("right shift"))
         {
