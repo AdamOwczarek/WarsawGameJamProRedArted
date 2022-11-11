@@ -16,9 +16,15 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         if (IsPlayer1)
-            GetKeyboardInputWsad();
+        {
+            GetKeyboardInputWsad();  
+        }
+
         else
-            GetKeyboardInputArrows();
+        {
+            GetKeyboardInputArrows();  
+        }
+            
     }
 
     public bool GetIsPlayer1()
