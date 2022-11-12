@@ -5,32 +5,47 @@ using UnityEngine.UIElements;
 
 public class MapMovement : MonoBehaviour
 {
-    public float smooth;
+    private float smooth = 4;
 
     public bool rotatebool=true;
 
     private int rotationAngle = 0;
+
     // Start is called before the first frame update
     void Start()
     {
-       
-        
+
+    }
+
+    public void fakeConsume()
+    {
+        smooth = 400;
+        rotatebool = !rotatebool;
     }
 
     // Update is called once per frame
     void Update()
     {
+        smooth -= Time.deltaTime*450;
+        if (smooth < 15)
+        {
+            smooth = 15f;
+        }
+        if (Input.GetKeyDown("space"))
+        {
+            //fakeConsume();
+        }
         RotateMap();
     }
 
     void RotateMap()
     {
-        if (rotatebool==true)
+        if (rotatebool)
         {
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, rotationAngle, 0), smooth * Time.deltaTime);
         }
             
-        else if (rotatebool==false)
+        else
         {
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, rotationAngle+180, 0), smooth * Time.deltaTime);
         }

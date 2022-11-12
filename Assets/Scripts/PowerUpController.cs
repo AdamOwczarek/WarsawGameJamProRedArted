@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PowerUpController : MonoBehaviour
 {
-    public string[ ] TagList = new string[ ]{"ObrotowySwiat", "Input", "Sloik"} ;
+    private string[ ] TagList = new string[ ]{"map", "input", "swap", "jar"} ;
     [SerializeField] private GameObject ArenaObject;
     private MapMovement mapMovement;
     private int arenaBorderXPos=5;
@@ -17,7 +17,7 @@ public class PowerUpController : MonoBehaviour
     void Start()
     {
         
-        this.tag = TagList[Random.Range(0, 3)];
+        this.tag = TagList[Random.Range(0, TagList.Length)];
         mapMovement = ArenaObject.GetComponent<MapMovement>();
         this.transform.position = new Vector3(Random.Range(arenaBorderXNeg, arenaBorderXPos), 0,
             Random.Range(arenaBorderZNeg, arenaBorderZPos));
@@ -32,38 +32,17 @@ public class PowerUpController : MonoBehaviour
 
     void OnTriggerEnter(Collider collider)
     {
-        switch (this.tag)
+        Debug.Log("siema");
+        Debug.Log(collider.gameObject.name);
+        PlayerMovement p = collider?.gameObject?.transform?.parent?.GetComponent<PlayerMovement>();
+        if (p != null && !p.isFake)
         {
-            case "ObrotowySwiat":
-                ObrotowySwiat();
-                break;
-            case "Input":
-                print("Hello and good day!");
-                break;
-            case "Sloik":
-                Input();
-                break;
-            default:
-                Sloik();
-                break;
+            p.fakeStart(this.tag);
+            this.tag = TagList[Random.Range(0, TagList.Length)];
+            this.transform.position = new Vector3(Random.Range(arenaBorderXNeg, arenaBorderXPos), 0,
+                Random.Range(arenaBorderZNeg, arenaBorderZPos));
         }
-        this.tag = TagList[Random.Range(0, 3)];
-        this.transform.position = new Vector3(Random.Range(arenaBorderXNeg, arenaBorderXPos), 0,
-            Random.Range(arenaBorderZNeg, arenaBorderZPos));
+        
     }
-    
-
-        void ObrotowySwiat()
-        {
-            mapMovement.rotatebool = !mapMovement.rotatebool;
-        }
-        void Input()
-        {
-            
-        }
-        void Sloik()
-        {
-            
-        } 
-    }
+}
 

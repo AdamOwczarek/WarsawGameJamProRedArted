@@ -7,12 +7,17 @@ using UnityEngine.SceneManagement;
 public class VictoryConfition1 : MonoBehaviour
 {
     [SerializeField] Collider collider;
-
+    [SerializeField] private GameObject victoryPanel;
+    [SerializeField] private GameObject victoryPanel2;
+    [SerializeField] private GameObject victoryPanel3;
     private void OnTriggerEnter(Collider collider)
     {
-        if (collider.tag == "Player2")
+        if (collider.CompareTag("Player2"))
         {
-            Debug.Log("Player2 won");
+            victoryPanel.SetActive(true);
+            victoryPanel2.SetActive(true);
+            victoryPanel3.SetActive(true);
+           
         }
        
         
