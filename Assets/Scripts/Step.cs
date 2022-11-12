@@ -14,7 +14,7 @@ public class Step : MonoBehaviour
     public void myStart(Vector3 v)
     {
         transform.position = new Vector3(v.x, v.y, v.z);
-        GetComponent<ParticleSystem>().startSize = 3;
+        //GetComponent<ParticleSystem>().startSize = 3;
         
     }
     
@@ -27,7 +27,7 @@ public class Step : MonoBehaviour
     void Start()
     {
         GetComponent<ParticleSystem>().Play();
-        GetComponent<ParticleSystem>().startSize = 0;
+        //GetComponent<ParticleSystem>().startSize = 0;
     }
 
     // Update is called once per frame
