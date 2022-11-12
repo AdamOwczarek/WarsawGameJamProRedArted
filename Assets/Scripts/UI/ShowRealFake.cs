@@ -6,6 +6,7 @@ public class ShowRealFake : MonoBehaviour
 {
     public AudioSource effect;
     public GameObject UpperPanel, DownPanel;
+    public GameObject particles;
 
     private Animator animatorUp;
     private Animator animatorDown;
@@ -23,6 +24,8 @@ public class ShowRealFake : MonoBehaviour
         textDown = DownPanel.transform.Find("DownTextBox").GetComponent<Text>();
         animatorUp = UpperPanel.GetComponent<Animator>();
         animatorDown = DownPanel.GetComponent<Animator>();
+        var particleSystemMain = particles.GetComponent<ParticleSystem>().main;
+        particleSystemMain.startDelay = 0.3f;
     }
 
     public void BigReveal(bool real)
@@ -40,6 +43,8 @@ public class ShowRealFake : MonoBehaviour
         }
         animatorUp.Play("REALFAKE_UPPER");
         animatorDown.Play("REALFAKE_DOWN");
+        particles.SetActive(false);
+        particles.SetActive(true);
     }
     
     // Update is called once per frame
