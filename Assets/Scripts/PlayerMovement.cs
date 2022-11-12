@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject stepPref;
     private GameObject step;
     
-    private float speed2 = 0.006f;
+    private float speed2 = 0.6f;
     private int speed = 1;
     public bool IsPlayer1 = false;
 
@@ -131,18 +131,18 @@ public class PlayerMovement : MonoBehaviour
             {
                 
                 Debug.Log(step == null);
-                step.GetComponent<Step>().move(new Vector3(move.z, -move.y, -move.x)*speed2*speed);
+                step.GetComponent<Step>().move(new Vector3(move.z, -move.y, -move.x)*speed2*speed*Time.deltaTime);
             }
         
             if (powerupKey == "swap")
             {
                 Debug.Log(step == null);
-                step.GetComponent<Step>().move(new Vector3(-move.z, -move.y, move.x)*speed2*speed);
+                step.GetComponent<Step>().move(new Vector3(-move.z, -move.y, move.x)*speed2*speed*Time.deltaTime);
             }
-            fakes.Add(new Vector3(-move.x, -move.y, -move.z)*speed2);
+            fakes.Add(new Vector3(-move.x, -move.y, -move.z)*speed2*Time.deltaTime);
         }
 
-        return move*speed2;
+        return move*speed2*Time.deltaTime;
     }
     
     // Start is called before the first frame update

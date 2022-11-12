@@ -3514,7 +3514,7 @@ PrefabInstance:
     - target: {fileID: 7251266745269358449, guid: 4d18d4d2b5797ba4696ace546da2c8a9, type: 3}
       propertyPath: stepPref
       value: 
-      objectReference: {fileID: 5381858963734225099, guid: a943216aecea2ef4c962069bf28dac1e, type: 3}
+      objectReference: {fileID: 7555324761240891677, guid: 7893b0accb26ef1418dffa6a5ed68fcc, type: 3}
     - target: {fileID: 7251266745269358449, guid: 4d18d4d2b5797ba4696ace546da2c8a9, type: 3}
       propertyPath: secondPlayer
       value: 
