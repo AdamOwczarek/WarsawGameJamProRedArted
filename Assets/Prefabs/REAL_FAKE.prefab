@@ -361,7 +361,6 @@ GameObject:
   - component: {fileID: 1224676644559661099}
   - component: {fileID: 1224676644559661096}
   - component: {fileID: 1224676644559661097}
-  - component: {fileID: 1224676644559661094}
   - component: {fileID: 1224676644559661098}
   m_Layer: 5
   m_Name: REAL_FAKE
@@ -553,7 +552,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8712649349484824642, guid: 7c4bff31a87b8d8419f234af0e23e1e9, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8712649349484824642, guid: 7c4bff31a87b8d8419f234af0e23e1e9, type: 3}
       propertyPath: m_LocalPosition.x
