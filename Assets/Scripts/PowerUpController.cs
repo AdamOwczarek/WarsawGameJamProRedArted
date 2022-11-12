@@ -17,8 +17,7 @@ public class PowerUpController : MonoBehaviour
     void Start()
     {
         
-        //this.tag = TagList[Random.Range(0, TagList.Length)];
-        this.tag = TagList[2];
+        this.tag = TagList[Random.Range(0, TagList.Length)];
         mapMovement = ArenaObject.GetComponent<MapMovement>();
         this.transform.position = new Vector3(Random.Range(arenaBorderXNeg, arenaBorderXPos), 0,
             Random.Range(arenaBorderZNeg, arenaBorderZPos));
