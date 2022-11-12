@@ -19,7 +19,6 @@ public class ShowRealFake : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        
         textUp = UpperPanel.transform.Find("UpperTextBox").GetComponent<Text>();
         textDown = DownPanel.transform.Find("DownTextBox").GetComponent<Text>();
         animatorUp = UpperPanel.GetComponent<Animator>();
