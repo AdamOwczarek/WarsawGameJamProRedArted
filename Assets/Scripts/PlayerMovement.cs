@@ -10,11 +10,13 @@ public class PlayerMovement : MonoBehaviour
     public bool IsPlayer1 = false;
 
     public GameObject secondPlayer;
+    public GameObject realfake;
     public GameObject map;
 
     private string[] powerups = { "input", "map", "swap", "jar"};
     private string powerupKey = "";
 
+    private bool faked = false;
     private List<Vector3> fakes = new List<Vector3>();
     private Vector3 fakeStartPos = new Vector3();
     private bool isFake = false;
@@ -22,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     private float fakeTime = 0;
     public void fakeStart(string key)
     {
+        faked = false;
         Debug.Log(key);
         powerupKey = key;
         secondPlayer.GetComponent<PlayerMovement>().powerupKey = key;
@@ -48,6 +51,10 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
+    private void fakeConsume2()
+    {
+        faked = true;
+    }
     private void fakeConsume()
     {
         fakeTime = 0;
@@ -107,7 +114,16 @@ public class PlayerMovement : MonoBehaviour
             fakeTime += Time.deltaTime;
             if (fakeTime > 3)
             {
-                fakeCancel();
+                if (faked)
+                {
+                    realfake.GetComponent<ShowRealFake>().BigReveal(true);
+                    fakeConsume();
+                }
+                else
+                {
+                    realfake.GetComponent<ShowRealFake>().BigReveal(false);
+                    fakeCancel();
+                }
                 Debug.Log("cancel");
             }
         }
@@ -178,7 +194,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown("space"))
         {
-            fakeConsume();
+            fakeConsume2();
             Debug.Log("Faked a PowerUp!");
         }
         
@@ -218,7 +234,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown("right shift"))
         {
-            fakeConsume();
+            fakeConsume2();
             Debug.Log("Faked a PowerUp!");
         }
     }

@@ -54,11 +54,11 @@ public class ShowRealFake : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.S))
         {
-            BigReveal(true);
+            //BigReveal(true);
         }
         if (Input.GetKey(KeyCode.W))
         {
-            BigReveal(false);
+            //BigReveal(false);
         }
     }
 }
