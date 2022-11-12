@@ -64,6 +64,22 @@ public class PowerUpController : MonoBehaviour
             this.tag = TagList[Random.Range(0, TagList.Length)];
             this.transform.position = new Vector3(Random.Range(arenaBorderXNeg, arenaBorderXPos), 0.4f,
                 Random.Range(arenaBorderZNeg, arenaBorderZPos));
+            if(this.tag == "map")
+            {
+                this.renderer.sprite = mapSprite;
+            }
+            else if (this.tag == "input")
+            {
+                this.renderer.sprite = inputSprite;
+            }
+            else if (this.tag ==  "swap")
+            {
+                this.renderer.sprite = swapSprite;
+            }
+            else if (this.tag == "jar")
+            {
+                this.renderer.sprite = jarSprite;
+            }
         }
         
     }
