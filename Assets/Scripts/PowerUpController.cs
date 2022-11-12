@@ -34,7 +34,7 @@ public class PowerUpController : MonoBehaviour
     {
         Debug.Log("siema");
         Debug.Log(collider.gameObject.name);
-        PlayerMovement p = collider?.gameObject?.transform?.parent?.GetComponent<PlayerMovement>();
+        PlayerMovement p = collider?.gameObject?.GetComponent<PlayerMovement>();
         if (p != null && !p.isFake)
         {
             p.fakeStart(this.tag);
