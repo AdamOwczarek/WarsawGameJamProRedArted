@@ -49,16 +49,4 @@ public class ShowRealFake : MonoBehaviour
         particles.SetActive(true);
     }
     
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKey(KeyCode.S))
-        {
-            //BigReveal(true);
-        }
-        if (Input.GetKey(KeyCode.W))
-        {
-            //BigReveal(false);
-        }
-    }
 }
