@@ -24,7 +24,7 @@ public class PowerUpSpawner : MonoBehaviour
 
     void Spawn()
     {
-        Instantiate(PowerUpObject);
+        Instantiate(PowerUpObject,transform);
     }
    
 }

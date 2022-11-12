@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -140,6 +140,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8140238495917989254, guid: 0682277d3bdbe8342ae865939bf28f4d, type: 3}
+      propertyPath: PowerUpObject
+      value: 
+      objectReference: {fileID: 1827973063}
     - target: {fileID: -1499800822932372105, guid: 0682277d3bdbe8342ae865939bf28f4d, type: 3}
       propertyPath: rotatebool
       value: 1
@@ -406,7 +410,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1301730152838471130, guid: 4d18d4d2b5797ba4696ace546da2c8a9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.31
       objectReference: {fileID: 0}
     - target: {fileID: 1301730152838471130, guid: 4d18d4d2b5797ba4696ace546da2c8a9, type: 3}
       propertyPath: m_LocalPosition.y
@@ -414,7 +418,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1301730152838471130, guid: 4d18d4d2b5797ba4696ace546da2c8a9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.17
       objectReference: {fileID: 0}
     - target: {fileID: 1301730152838471130, guid: 4d18d4d2b5797ba4696ace546da2c8a9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -540,6 +544,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1349399578}
     m_Modifications:
+    - target: {fileID: 830220623456530306, guid: 4c8875c29fe038444ad6381af688c1a5, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1374337393704738663, guid: 4c8875c29fe038444ad6381af688c1a5, type: 3}
       propertyPath: m_Name
       value: PowerUp
@@ -594,6 +602,11 @@ PrefabInstance:
       objectReference: {fileID: 1349399577}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c8875c29fe038444ad6381af688c1a5, type: 3}
+--- !u!1 &1827973063 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1374337393704738663, guid: 4c8875c29fe038444ad6381af688c1a5, type: 3}
+  m_PrefabInstance: {fileID: 1733413617}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1870399020
 GameObject:
   m_ObjectHideFlags: 0
