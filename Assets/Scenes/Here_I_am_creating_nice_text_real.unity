@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &26812866 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5014936249894797213, guid: c1034b7832be78a4aaf3a900f3edd036, type: 3}
+  m_PrefabInstance: {fileID: 5906919545795541851}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &187615097
 GameObject:
   m_ObjectHideFlags: 0
@@ -376,6 +381,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: REAL_FAKE
       objectReference: {fileID: 0}
+    - target: {fileID: 1224676644559661098, guid: c1034b7832be78a4aaf3a900f3edd036, type: 3}
+      propertyPath: particles
+      value: 
+      objectReference: {fileID: 26812866}
     - target: {fileID: 1224676644559661099, guid: c1034b7832be78a4aaf3a900f3edd036, type: 3}
       propertyPath: m_Pivot.x
       value: 0

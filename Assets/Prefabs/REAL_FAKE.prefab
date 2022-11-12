@@ -677,7 +677,7 @@ MonoBehaviour:
   effect: {fileID: 1224676644073989721}
   UpperPanel: {fileID: 1224676644406626852}
   DownPanel: {fileID: 1224676643769580567}
-  particles: {fileID: 1224676644073989718}
+  particles: {fileID: 5014936249894797213}
 --- !u!1001 &5016587127471024887
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -743,6 +743,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c87503deada045dfad4b3f34d340ae0, type: 3}
+--- !u!1 &5014936249894797213 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1933607824282986, guid: 3c87503deada045dfad4b3f34d340ae0, type: 3}
+  m_PrefabInstance: {fileID: 5016587127471024887}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5012936100492446855 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4496706374772336, guid: 3c87503deada045dfad4b3f34d340ae0, type: 3}
