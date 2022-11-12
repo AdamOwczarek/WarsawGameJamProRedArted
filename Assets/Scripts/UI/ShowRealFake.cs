@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class ShowRealFake : MonoBehaviour
 {
-    public AudioSource effect;
+    public AudioSource effectAudio, realAudio, fakeAudio;
     public GameObject UpperPanel, DownPanel;
     public GameObject particles;
 
@@ -30,14 +30,16 @@ public class ShowRealFake : MonoBehaviour
 
     public void BigReveal(bool real)
     {
-        effect.Play();
+        effectAudio.Play();
         if (real)
         {
+            realAudio.Play();
             textUp.text = textReal;
             textDown.text = textReal;
         }
         else
         {
+            fakeAudio.Play();
             textUp.text = textFake;
             textDown.text = textFake;
         }
