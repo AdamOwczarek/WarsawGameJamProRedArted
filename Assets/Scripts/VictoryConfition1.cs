@@ -10,6 +10,7 @@ public class VictoryConfition1 : MonoBehaviour
     [SerializeField] private GameObject victoryPanel;
     [SerializeField] private GameObject victoryPanel2;
     [SerializeField] private GameObject victoryPanel3;
+    [SerializeField] private GameObject disactivate;
     private void OnTriggerEnter(Collider collider)
     {
         if (collider.CompareTag("Player2"))
@@ -17,7 +18,7 @@ public class VictoryConfition1 : MonoBehaviour
             victoryPanel.SetActive(true);
             victoryPanel2.SetActive(true);
             victoryPanel3.SetActive(true);
-           
+            disactivate.SetActive(false);
         }
        
         
