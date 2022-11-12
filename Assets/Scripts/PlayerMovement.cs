@@ -5,7 +5,10 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private float speed2 = 0.008f;
+    public GameObject stepPref;
+    private GameObject step;
+    
+    private float speed2 = 0.003f;
     private int speed = 1;
     public bool IsPlayer1 = false;
 
@@ -48,6 +51,16 @@ public class PlayerMovement : MonoBehaviour
         {
             fakeStartPos = new Vector3(secondPlayer.transform.position.x, secondPlayer.transform.position.y, secondPlayer.transform.position.z);
             secondPlayer.GetComponent<PlayerMovement>().fakeStartPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        }
+        
+        if (key == "input")
+        {
+            step.GetComponent<Step>().myStart(transform.position);
+        }
+        
+        if (key == "swap")
+        {
+            step.GetComponent<Step>().myStart(secondPlayer.GetComponent<PlayerMovement>().transform.position);
         }
         
     }
@@ -107,6 +120,23 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isFake)
         {
+            int side = 1;
+            if (isFakeControl)
+            {
+                
+            }
+            if (powerupKey == "input")
+            {
+                
+                Debug.Log(step == null);
+                step.GetComponent<Step>().move(new Vector3(move.z, -move.y, -move.x)*speed2*speed);
+            }
+        
+            if (powerupKey == "swap")
+            {
+                Debug.Log(step == null);
+                step.GetComponent<Step>().move(new Vector3(-move.z, -move.y, move.x)*speed2*speed);
+            }
             fakes.Add(new Vector3(-move.x, -move.y, -move.z)*speed2);
         }
 
@@ -117,6 +147,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         fakes = new List<Vector3>();
+        step = Instantiate(stepPref);
     }
 
     // Update is called once per frame
@@ -149,6 +180,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if (!isFake && fakes.Count > 0)
         {
+            step.GetComponent<Step>().myEnd();
             if (powerupKey == "input")
             {
                 float fCount = fakes.Count / 30f;
@@ -156,6 +188,10 @@ public class PlayerMovement : MonoBehaviour
                 {
                     transform.Translate(fakes[fakes.Count - 1]);
                     fakes.RemoveAt(fakes.Count - 1);
+                    if (fakes.Count == 4)
+                    {
+                        //step.GetComponent<Step>().myEnd();
+                    }
                 }
             }
             else if (powerupKey == "swap")
@@ -165,6 +201,10 @@ public class PlayerMovement : MonoBehaviour
                 {
                     transform.Translate(-fakes[fakes.Count - 1]);
                     fakes.RemoveAt(fakes.Count - 1);
+                    if (fakes.Count == 4)
+                    {
+                        //step.GetComponent<Step>().myEnd();
+                    }
                 }
             }
             else
