@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private float speed2 = 0.003f;
+    private float speed2 = 0.008f;
     private int speed = 1;
     public bool IsPlayer1 = false;
 
@@ -54,8 +54,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void fakeConsume2()
     {
-        faked = true;
-        secondPlayer.GetComponent<PlayerMovement>().faked = true;
+        if (isFake)
+        {
+            faked = true;
+            secondPlayer.GetComponent<PlayerMovement>().faked = true;
+        }
     }
     private void fakeConsume()
     {
@@ -80,8 +83,8 @@ public class PlayerMovement : MonoBehaviour
         }
         
         
-        faked = true;
-        secondPlayer.GetComponent<PlayerMovement>().faked = true;
+        faked = false;
+        secondPlayer.GetComponent<PlayerMovement>().faked = false;
     }
 
     private void fakeCancel()
