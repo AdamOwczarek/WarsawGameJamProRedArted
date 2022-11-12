@@ -14,17 +14,20 @@ public class Step : MonoBehaviour
     public void myStart(Vector3 v)
     {
         transform.position = new Vector3(v.x, v.y, v.z);
-        GetComponent<ParticleSystem>().Play();
+        GetComponent<ParticleSystem>().startSize = 3;
+        
     }
     
     public void myEnd()
     {
-        GetComponent<ParticleSystem>().Stop();
+        transform.Translate(new Vector3(30000, -3000, 0));
+        GetComponent<ParticleSystem>().startSize = 0;
     }
     
     void Start()
     {
-        //GetComponent<ParticleSystem>().Play();
+        GetComponent<ParticleSystem>().Play();
+        GetComponent<ParticleSystem>().startSize = 0;
     }
 
     // Update is called once per frame

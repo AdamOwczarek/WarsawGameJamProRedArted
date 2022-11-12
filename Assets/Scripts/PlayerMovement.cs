@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject stepPref;
     private GameObject step;
     
-    private float speed2 = 0.003f;
+    private float speed2 = 0.006f;
     private int speed = 1;
     public bool IsPlayer1 = false;
 
@@ -56,11 +56,13 @@ public class PlayerMovement : MonoBehaviour
         if (key == "input")
         {
             step.GetComponent<Step>().myStart(transform.position);
+            secondPlayer.GetComponent<PlayerMovement>().step.GetComponent<Step>().myStart(secondPlayer.GetComponent<PlayerMovement>().transform.position);
         }
         
         if (key == "swap")
         {
             step.GetComponent<Step>().myStart(secondPlayer.GetComponent<PlayerMovement>().transform.position);
+            secondPlayer.GetComponent<PlayerMovement>().step.GetComponent<Step>().myStart(transform.position);
         }
         
     }
@@ -178,9 +180,13 @@ public class PlayerMovement : MonoBehaviour
                 Debug.Log("cancel");
             }
         }
+        else
+        {
+            step.GetComponent<Step>().myStart(transform.position);
+        }
         if (!isFake && fakes.Count > 0)
         {
-            step.GetComponent<Step>().myEnd();
+            
             if (powerupKey == "input")
             {
                 float fCount = fakes.Count / 30f;
