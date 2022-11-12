@@ -1,3 +1,4 @@
+using System.Runtime.ConstrainedExecution;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,8 +11,11 @@ public class ShowRealFake : MonoBehaviour
     private Animator animatorDown;
     private Text textUp;
     private Text textDown;
-    // Start is called before the first frame update
 
+    private string textReal = "R E A L";
+    private string textFake = "F A K E";
+    
+    // Start is called before the first frame update
     private void Start()
     {
         
@@ -26,13 +30,13 @@ public class ShowRealFake : MonoBehaviour
         effect.Play();
         if (real)
         {
-            textUp.text = "R E A L";
-            textDown.text = "R E A L";
+            textUp.text = textReal;
+            textDown.text = textReal;
         }
         else
         {
-            textUp.text = "F A K E";
-            textDown.text = "F A K E";
+            textUp.text = textFake;
+            textDown.text = textFake;
         }
         animatorUp.Play("REALFAKE_UPPER");
         animatorDown.Play("REALFAKE_DOWN");
