@@ -5,42 +5,92 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private float speed2 = 0.003f;
     private int speed = 1;
     public bool IsPlayer1 = false;
+
+    public GameObject secondPlayer;
+    public GameObject map;
+
+    private string[] powerups = { "input", "map", "swap", "jar"};
+    private string powerupKey = "";
 
     private List<Vector3> fakes = new List<Vector3>();
     private Vector3 fakeStartPos = new Vector3();
     private bool isFake = false;
+    private bool isFakeControl = false;
     private float fakeTime = 0;
-
-    private void fakeStart()
+    public void fakeStart(string key)
     {
+        Debug.Log(key);
+        powerupKey = key;
+        secondPlayer.GetComponent<PlayerMovement>().powerupKey = key;
+        
         isFake = true;
+        secondPlayer.GetComponent<PlayerMovement>().isFake = true;
+        
+        isFakeControl = true;
+        
         fakeTime = 0;
-        fakeStartPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        secondPlayer.GetComponent<PlayerMovement>().fakeTime = 0;
+        
+        if (key == "input" || key == "jar")
+        {
+            fakeStartPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+            secondPlayer.GetComponent<PlayerMovement>().fakeStartPos = new Vector3(secondPlayer.transform.position.x, secondPlayer.transform.position.y, secondPlayer.transform.position.z);
+        }
+
+        if (key == "swap")
+        {
+            fakeStartPos = new Vector3(secondPlayer.transform.position.x, secondPlayer.transform.position.y, secondPlayer.transform.position.z);
+            secondPlayer.GetComponent<PlayerMovement>().fakeStartPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        }
+        
     }
 
     private void fakeConsume()
     {
         fakeTime = 0;
+        secondPlayer.GetComponent<PlayerMovement>().fakeTime = 0;
+        
         isFake = false;
-        transform.position = new Vector3(fakeStartPos.x, fakeStartPos.y, fakeStartPos.z);
+        secondPlayer.GetComponent<PlayerMovement>().fakeTime = 0;
+        
+        isFakeControl = true;
+        secondPlayer.GetComponent<PlayerMovement>().isFakeControl = false;
+
+        if (powerupKey == "input" || powerupKey == "jar" || powerupKey == "swap")
+        {
+            transform.position = new Vector3(fakeStartPos.x, fakeStartPos.y, fakeStartPos.z);
+            secondPlayer.GetComponent<PlayerMovement>().transform.position = new Vector3(secondPlayer.GetComponent<PlayerMovement>().fakeStartPos.x, secondPlayer.GetComponent<PlayerMovement>().fakeStartPos.y, secondPlayer.GetComponent<PlayerMovement>().fakeStartPos.z);
+        }
+
+        if (powerupKey == "map" && isFakeControl)
+        {
+            map.GetComponent<MapMovement>().fakeConsume();
+        }
     }
 
     private void fakeCancel()
     {
+        powerupKey = "";
+        secondPlayer.GetComponent<PlayerMovement>().powerupKey = "";
         fakes.Clear();
+        secondPlayer.GetComponent<PlayerMovement>().fakes.Clear();
         isFake = false;
+        secondPlayer.GetComponent<PlayerMovement>().isFake = false;
+        isFakeControl = false;
+        secondPlayer.GetComponent<PlayerMovement>().isFakeControl = false;
     }
     
     private Vector3 fakeMove(Vector3 move)
     {
         if (isFake)
         {
-            fakes.Add(new Vector3(-move.x, -move.y, -move.z)*0.01f);
+            fakes.Add(new Vector3(-move.x, -move.y, -move.z)*speed2);
         }
 
-        return move*0.01f;
+        return move*speed2;
     }
     
     // Start is called before the first frame update
@@ -61,67 +111,69 @@ public class PlayerMovement : MonoBehaviour
                 Debug.Log("cancel");
             }
         }
-        if (IsPlayer1)
+        if (!isFake && fakes.Count > 0)
         {
-            GetKeyboardInputWsad();  
-        }
+            if (powerupKey == "input")
+            {
+                float fCount = fakes.Count / 30f;
+                for (int i = 0; i < fCount; i++)
+                {
+                    transform.Translate(fakes[fakes.Count - 1]);
+                    fakes.RemoveAt(fakes.Count - 1);
+                }
+            }
+            else if (powerupKey == "swap")
+            {
+                float fCount = fakes.Count / 30f;
+                for (int i = 0; i < fCount; i++)
+                {
+                    transform.Translate(-fakes[fakes.Count - 1]);
+                    fakes.RemoveAt(fakes.Count - 1);
+                }
+            }
+            else
+            {
+                fakes.Clear();
+            }
 
+        }
         else
         {
-            GetKeyboardInputArrows();  
-        }
-            
-    }
+            if (IsPlayer1)
+            {
+                GetKeyboardInputWsad();  
+            }
 
-    public bool GetIsPlayer1()
-    {
-        return IsPlayer1;
-    }
-    public void SetIsPlayer1(bool value)
-    {
-        IsPlayer1 = value;
-    }
-    public bool GetSpeed()
-    {
-        return IsPlayer1;
-    }
-    public void SetSpeed(int value)
-    {
-        speed = value;
+            else
+            {
+                GetKeyboardInputArrows();  
+            }
+        }
+        
+            
     }
 
     void GetKeyboardInputWsad()
     {
-        if (!isFake && fakes.Count > 0)
+        if (Input.GetKey("w"))
         {
-            float fCount = fakes.Count / 20f;
-            for (int i = 0; i < fCount; i++)
-            {
-                transform.Translate(fakes[fakes.Count - 1]);
-                fakes.RemoveAt(fakes.Count - 1);
-            }
-        } else
+            transform.Translate(fakeMove(new Vector3(0, 0, speed)));
+
+        }
+
+        if (Input.GetKey("s"))
         {
-            if (Input.GetKey("w"))
-            {
-                transform.Translate(fakeMove(new Vector3(0, 0, speed)));
+            transform.Translate(fakeMove(new Vector3(0, 0, -speed)));
+        }
 
-            }
+        if (Input.GetKey("a"))
+        {
+            transform.Translate(fakeMove(new Vector3(-speed, 0, 0)));
+        }
 
-            if (Input.GetKey("s"))
-            {
-                transform.Translate(fakeMove(new Vector3(0, 0, -speed)));
-            }
-
-            if (Input.GetKey("a"))
-            {
-                transform.Translate(fakeMove(new Vector3(-speed, 0, 0)));
-            }
-
-            if (Input.GetKey("d"))
-            {
-                transform.Translate(fakeMove(new Vector3(speed, 0, 0)));
-            }
+        if (Input.GetKey("d"))
+        {
+            transform.Translate(fakeMove(new Vector3(speed, 0, 0)));
         }
 
         if (Input.GetKeyDown("space"))
@@ -132,38 +184,36 @@ public class PlayerMovement : MonoBehaviour
         
         if (Input.GetKeyDown("f"))
         {
-            fakeStart();
+            fakeStart(powerups[(int)Random.Range(0, powerups.Length)]);
             Debug.Log("PowerUp!");
         }
     }
     void GetKeyboardInputArrows()
     {
-        if (!isFake && fakes.Count > 0)
+        if (Input.GetKey("up"))
         {
-            transform.Translate(fakes[fakes.Count-1]);
-            fakes.RemoveAt(fakes.Count-1);
+            transform.Translate(fakeMove(new Vector3(0, 0, speed)));
         }
-        else
+
+        if (Input.GetKey("down"))
         {
-            if (Input.GetKey("up"))
-            {
-                transform.Translate(fakeMove(new Vector3(0, 0, speed)));
-            }
+            transform.Translate(fakeMove(new Vector3(0, 0, -speed)));
+        }
 
-            if (Input.GetKey("down"))
-            {
-                transform.Translate(fakeMove(new Vector3(0, 0, -speed)));
-            }
+        if (Input.GetKey("left"))
+        {
+            transform.Translate(fakeMove(new Vector3(-speed, 0, 0)));
+        }
 
-            if (Input.GetKey("left"))
-            {
-                transform.Translate(fakeMove(new Vector3(-speed, 0, 0)));
-            }
-
-            if (Input.GetKey("right"))
-            {
-                transform.Translate(fakeMove(new Vector3(speed, 0, 0)));
-            }
+        if (Input.GetKey("right"))
+        {
+            transform.Translate(fakeMove(new Vector3(speed, 0, 0)));
+        }
+        
+        if (Input.GetKeyDown("f"))
+        {
+            fakeStart(powerups[(int)Random.Range(0, powerups.Length)]);
+            Debug.Log("PowerUp!");
         }
 
         if (Input.GetKeyDown("right shift"))
