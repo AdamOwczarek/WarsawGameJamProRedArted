@@ -462,9 +462,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 1349399578}
     m_Modifications:
     - target: {fileID: 1606630468, guid: 4c8875c29fe038444ad6381af688c1a5, type: 3}
+      propertyPath: swapSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 893c76218d7a4964981d9a7d3d3b51d7, type: 3}
+    - target: {fileID: 1606630468, guid: 4c8875c29fe038444ad6381af688c1a5, type: 3}
       propertyPath: ArenaObject
       value: 
       objectReference: {fileID: 1349399577}
+    - target: {fileID: 1606630468, guid: 4c8875c29fe038444ad6381af688c1a5, type: 3}
+      propertyPath: inputSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 96a98056dd15839449665d744273c8f0, type: 3}
     - target: {fileID: 1374337393704738663, guid: 4c8875c29fe038444ad6381af688c1a5, type: 3}
       propertyPath: m_Name
       value: PowerUp
