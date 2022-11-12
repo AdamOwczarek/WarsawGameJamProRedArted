@@ -19,9 +19,9 @@ public class PlayerMovement : MonoBehaviour
     private bool faked = false;
     private List<Vector3> fakes = new List<Vector3>();
     private Vector3 fakeStartPos = new Vector3();
-    private bool isFake = false;
+    public bool isFake = false;
     private bool isFakeControl = false;
-    private float fakeTime = 0;
+    public float fakeTime = 0;
     public void fakeStart(string key)
     {
         faked = false;
@@ -33,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
         secondPlayer.GetComponent<PlayerMovement>().isFake = true;
         
         isFakeControl = true;
+        secondPlayer.GetComponent<PlayerMovement>().isFakeControl = false;
         
         fakeTime = 0;
         secondPlayer.GetComponent<PlayerMovement>().fakeTime = 0;
@@ -54,6 +55,7 @@ public class PlayerMovement : MonoBehaviour
     private void fakeConsume2()
     {
         faked = true;
+        secondPlayer.GetComponent<PlayerMovement>().faked = true;
     }
     private void fakeConsume()
     {
@@ -61,10 +63,10 @@ public class PlayerMovement : MonoBehaviour
         secondPlayer.GetComponent<PlayerMovement>().fakeTime = 0;
         
         isFake = false;
-        secondPlayer.GetComponent<PlayerMovement>().fakeTime = 0;
+        secondPlayer.GetComponent<PlayerMovement>().isFake = false;
         
-        isFakeControl = true;
-        secondPlayer.GetComponent<PlayerMovement>().isFakeControl = false;
+        //isFakeControl = true;
+        //secondPlayer.GetComponent<PlayerMovement>().isFakeControl = false;
 
         if (powerupKey == "input" || powerupKey == "jar" || powerupKey == "swap")
         {
@@ -76,6 +78,10 @@ public class PlayerMovement : MonoBehaviour
         {
             map.GetComponent<MapMovement>().fakeConsume();
         }
+        
+        
+        faked = true;
+        secondPlayer.GetComponent<PlayerMovement>().faked = true;
     }
 
     private void fakeCancel()
@@ -88,6 +94,9 @@ public class PlayerMovement : MonoBehaviour
         secondPlayer.GetComponent<PlayerMovement>().isFake = false;
         isFakeControl = false;
         secondPlayer.GetComponent<PlayerMovement>().isFakeControl = false;
+        
+        faked = false;
+        secondPlayer.GetComponent<PlayerMovement>().faked = false;
     }
     
     private Vector3 fakeMove(Vector3 move)
@@ -116,12 +125,19 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (faked)
                 {
-                    realfake.GetComponent<ShowRealFake>().BigReveal(true);
+                    if (IsPlayer1 || true)
+                    {
+                        realfake.GetComponent<ShowRealFake>().BigReveal(true);
+                    }
+                    
                     fakeConsume();
                 }
                 else
                 {
-                    realfake.GetComponent<ShowRealFake>().BigReveal(false);
+                    if (IsPlayer1 || true)
+                    {
+                        realfake.GetComponent<ShowRealFake>().BigReveal(false);
+                    }
                     fakeCancel();
                 }
                 Debug.Log("cancel");

@@ -35,13 +35,14 @@ public class PowerUpController : MonoBehaviour
         Debug.Log("siema");
         Debug.Log(collider.gameObject.name);
         PlayerMovement p = collider?.gameObject?.transform?.parent?.GetComponent<PlayerMovement>();
-        if (p != null)
+        if (p != null && !p.isFake)
         {
             p.fakeStart(this.tag);
+            this.tag = TagList[Random.Range(0, TagList.Length)];
+            this.transform.position = new Vector3(Random.Range(arenaBorderXNeg, arenaBorderXPos), 0,
+                Random.Range(arenaBorderZNeg, arenaBorderZPos));
         }
-        this.tag = TagList[Random.Range(0, TagList.Length)];
-        this.transform.position = new Vector3(Random.Range(arenaBorderXNeg, arenaBorderXPos), 0,
-            Random.Range(arenaBorderZNeg, arenaBorderZPos));
+        
     }
 }
 
