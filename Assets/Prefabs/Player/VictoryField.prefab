@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3568306516296512582}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: VictoryField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 1626965818044366592}
   - component: {fileID: 7518905103737072375}
   - component: {fileID: 8381477168522702549}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: BluePlaterField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,6 +90,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collider: {fileID: 7518905103737072375}
+  victoryPanel: {fileID: 0}
+  victoryPanel2: {fileID: 0}
+  victoryPanel3: {fileID: 0}
 --- !u!1 &7127117429692026392
 GameObject:
   m_ObjectHideFlags: 0
@@ -101,7 +104,7 @@ GameObject:
   - component: {fileID: 8339747006991656547}
   - component: {fileID: 4623853669126547983}
   - component: {fileID: 5718971019394008407}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: RedPlayerField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,3 +151,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collider: {fileID: 4623853669126547983}
+  victoryPanel: {fileID: 0}
+  victoryPanel2: {fileID: 0}
+  victoryPanel3: {fileID: 0}
