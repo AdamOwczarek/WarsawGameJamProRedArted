@@ -8,11 +8,16 @@ public class VictoryConfition : MonoBehaviour
 {
     [SerializeField] Collider collider;
     [SerializeField] private GameObject victoryPanel;
+    [SerializeField] private GameObject victoryPanel2;
+    [SerializeField] private GameObject victoryPanel3;
     private void OnTriggerEnter(Collider collider)
     {
-        if (collider.tag == "Player1")
+        if (collider.CompareTag("Player1"))
         {
             victoryPanel.SetActive(true);
+            victoryPanel2.SetActive(true);
+            victoryPanel3.SetActive(true);
+           
         }
        
         
