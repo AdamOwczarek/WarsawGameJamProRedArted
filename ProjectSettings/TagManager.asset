@@ -8,6 +8,8 @@ TagManager:
   - map
   - swap
   - jar
+  - Player1
+  - Player2
   layers:
   - Default
   - TransparentFX
