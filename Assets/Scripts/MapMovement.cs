@@ -19,6 +19,7 @@ public class MapMovement : MonoBehaviour
 
     public void fakeConsume()
     {
+        Debug.Log("map");
         smooth = 400;
         rotatebool = !rotatebool;
     }

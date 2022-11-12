@@ -54,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void fakeConsume2()
     {
-        if (isFake)
+        if (isFake && isFakeControl)
         {
             faked = true;
             secondPlayer.GetComponent<PlayerMovement>().faked = true;
@@ -68,8 +68,8 @@ public class PlayerMovement : MonoBehaviour
         isFake = false;
         secondPlayer.GetComponent<PlayerMovement>().isFake = false;
         
-        //isFakeControl = true;
-        //secondPlayer.GetComponent<PlayerMovement>().isFakeControl = false;
+        isFakeControl = true;
+        secondPlayer.GetComponent<PlayerMovement>().isFakeControl = false;
 
         if (powerupKey == "input" || powerupKey == "jar" || powerupKey == "swap")
         {
@@ -77,14 +77,15 @@ public class PlayerMovement : MonoBehaviour
             secondPlayer.GetComponent<PlayerMovement>().transform.position = new Vector3(secondPlayer.GetComponent<PlayerMovement>().fakeStartPos.x, secondPlayer.GetComponent<PlayerMovement>().fakeStartPos.y, secondPlayer.GetComponent<PlayerMovement>().fakeStartPos.z);
         }
 
+        Debug.Log("isFakeControl " + isFakeControl);
         if (powerupKey == "map" && isFakeControl)
         {
             map.GetComponent<MapMovement>().fakeConsume();
         }
         
         
-        faked = false;
-        secondPlayer.GetComponent<PlayerMovement>().faked = false;
+        faked = true;
+        secondPlayer.GetComponent<PlayerMovement>().faked = true;
     }
 
     private void fakeCancel()
@@ -219,7 +220,7 @@ public class PlayerMovement : MonoBehaviour
         
         if (Input.GetKeyDown("f"))
         {
-            fakeStart(powerups[(int)Random.Range(0, powerups.Length)]);
+            //fakeStart(powerups[(int)Random.Range(0, powerups.Length)]);
             Debug.Log("PowerUp!");
         }
     }
