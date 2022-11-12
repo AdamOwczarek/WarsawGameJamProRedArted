@@ -140,8 +140,12 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!isFake && fakes.Count > 0)
         {
-            transform.Translate(fakes[fakes.Count-1]);
-            fakes.RemoveAt(fakes.Count-1);
+            float fCount = fakes.Count / 20f;
+            for (int i = 0; i < fCount; i++)
+            {
+                transform.Translate(fakes[fakes.Count - 1]);
+                fakes.RemoveAt(fakes.Count - 1);
+            }
         }
         else
         {
