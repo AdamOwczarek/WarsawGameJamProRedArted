@@ -33,7 +33,7 @@ public class MapMovement : MonoBehaviour
         }
         if (Input.GetKeyDown("space"))
         {
-            fakeConsume();
+            //fakeConsume();
         }
         RotateMap();
     }
