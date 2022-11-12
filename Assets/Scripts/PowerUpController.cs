@@ -8,10 +8,10 @@ public class PowerUpController : MonoBehaviour
     private string[ ] TagList = new string[ ]{"map", "input", "swap", "jar"} ;
     [SerializeField] private GameObject ArenaObject;
     private MapMovement mapMovement;
-    private int arenaBorderXPos=4;
-    private int arenaBorderXNeg=-4;
-    private int arenaBorderZPos=4;
-    private int arenaBorderZNeg=-4;
+    private int arenaBorderXPos=-53;
+    private int arenaBorderXNeg=-45;
+    private int arenaBorderZPos=-16;
+    private int arenaBorderZNeg=-24;
    [SerializeField] Collider collider;
    [SerializeField] private SpriteRenderer renderer;
    [SerializeField] private Sprite mapSprite;
