@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject whatis;
     public GameObject stepPref;
     private GameObject step;
-    
+
     private float speed2 = 1.5f;
     private int speed = 1;
     public bool IsPlayer1 = false;
@@ -16,6 +16,10 @@ public class PlayerMovement : MonoBehaviour
     public GameObject secondPlayer;
     public GameObject realfake;
     public GameObject map;
+    public GameObject sloikKonfetti;
+    public GameObject sloik;
+    public float sloikDelta = 0.0f;
+    public bool dislpaySloik;
 
     private string[] powerups = { "input", "map", "swap", "jar"};
     private string powerupKey = "";
@@ -90,6 +94,20 @@ public class PlayerMovement : MonoBehaviour
 
         if (powerupKey == "input" || powerupKey == "jar" || powerupKey == "swap")
         {
+            if (powerupKey == "jar")
+            {
+                if (IsPlayer1)
+                {
+                    sloikKonfetti.SetActive(false);
+                    sloikKonfetti.SetActive(true);
+                }
+                sloik.SetActive(true);
+                sloikDelta = 0.0f;
+                dislpaySloik = true;
+                secondPlayer.GetComponent<PlayerMovement>().sloik.SetActive(true);
+                secondPlayer.GetComponent<PlayerMovement>().sloikDelta = 0.0f;
+                secondPlayer.GetComponent<PlayerMovement>().dislpaySloik = true;
+            }
             transform.position = new Vector3(fakeStartPos.x, fakeStartPos.y, fakeStartPos.z);
             secondPlayer.GetComponent<PlayerMovement>().transform.position = new Vector3(secondPlayer.GetComponent<PlayerMovement>().fakeStartPos.x, secondPlayer.GetComponent<PlayerMovement>().fakeStartPos.y, secondPlayer.GetComponent<PlayerMovement>().fakeStartPos.z);
         }
@@ -157,6 +175,16 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (dislpaySloik)
+        {
+            sloikDelta += Time.deltaTime;
+            if (sloikDelta >= 2)
+            {
+                dislpaySloik = false;
+                sloik.SetActive(false);
+            }
+        }
+        
         if (isFake)
         {
             fakeTime += Time.deltaTime;
@@ -221,7 +249,7 @@ public class PlayerMovement : MonoBehaviour
             }
 
         }
-        else
+        else if (!dislpaySloik)
         {
             if (IsPlayer1)
             {
