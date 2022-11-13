@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject stepPref;
     private GameObject step;
     
-    private float speed2 = 6f;
+    private float speed2 = 1.5f;
     private int speed = 1;
     public bool IsPlayer1 = false;
 
