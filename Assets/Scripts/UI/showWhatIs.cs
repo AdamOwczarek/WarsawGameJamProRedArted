@@ -16,11 +16,6 @@ public class showWhatIs : MonoBehaviour
     private bool playOnHalf = true;
 
     // Start is called before the first frame update
-    private void Start()
-    {
-        
-        PreBigRevealLetsGoBaby(2.8f);
-    }
 
     public void PreBigRevealLetsGoBaby(float duration)
     {
@@ -31,10 +26,14 @@ public class showWhatIs : MonoBehaviour
         effectAudio.Play();
         whatAudio.Play();
         panel.SetActive(true);
+        wypad = false;
     }
 
+    private bool wypad = true;
     private void Update()
     {
+        if (wypad) return;
+        
         delta += Time.deltaTime;
         
         if (delta >= flashDuration && delta < halfTime)
@@ -58,6 +57,8 @@ public class showWhatIs : MonoBehaviour
         if (delta >= duration)
         {
             effectAudio.Stop();
+            wypad = true;
+            playOnHalf = true;
         }
     }
 }

@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public GameObject whatis;
     public GameObject stepPref;
     private GameObject step;
     
-    private float speed2 = 0.6f;
+    private float speed2 = 6f;
     private int speed = 1;
     public bool IsPlayer1 = false;
 
@@ -27,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     public float fakeTime = 0;
     public void fakeStart(string key)
     {
+        whatis.GetComponent<showWhatIs>().PreBigRevealLetsGoBaby(3f);
         faked = false;
         Debug.Log(key);
         powerupKey = key;
@@ -294,7 +296,7 @@ public class PlayerMovement : MonoBehaviour
         
         if (Input.GetKeyDown("f"))
         {
-            fakeStart(powerups[(int)Random.Range(0, powerups.Length)]);
+            //fakeStart(powerups[(int)Random.Range(0, powerups.Length)]);
             Debug.Log("PowerUp!");
         }
 
