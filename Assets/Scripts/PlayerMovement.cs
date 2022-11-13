@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject secondPlayer;
     public GameObject realfake;
     public GameObject map;
+    public GameObject sloikKonfetti;
 
     private string[] powerups = { "input", "map", "swap", "jar"};
     private string powerupKey = "";
@@ -90,6 +91,11 @@ public class PlayerMovement : MonoBehaviour
 
         if (powerupKey == "input" || powerupKey == "jar" || powerupKey == "swap")
         {
+            if (powerupKey == "jar" && IsPlayer1)
+            {
+                sloikKonfetti.SetActive(false);
+                sloikKonfetti.SetActive(true);
+            }
             transform.position = new Vector3(fakeStartPos.x, fakeStartPos.y, fakeStartPos.z);
             secondPlayer.GetComponent<PlayerMovement>().transform.position = new Vector3(secondPlayer.GetComponent<PlayerMovement>().fakeStartPos.x, secondPlayer.GetComponent<PlayerMovement>().fakeStartPos.y, secondPlayer.GetComponent<PlayerMovement>().fakeStartPos.z);
         }
